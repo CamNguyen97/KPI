@@ -44,7 +44,8 @@ namespace Web.Areas.FrontEnd.Controllers
 					flag = await run(@"F:\KPI-YB\KPI-Trung P10\dsnv.xls");
 					flag++;
 				}
-				 
+				int result = 0;
+				
 				return View();
 			}
 			catch (Exception ex)
@@ -103,26 +104,34 @@ namespace Web.Areas.FrontEnd.Controllers
 			// add national
 			//var national = await Read_national(rowCount, xlRange);
 			DateTime d = new DateTime(1977, 5, 9);
-			try
-			{
-				result = await _repository.GetRepository<Account>().CreateAsync(new Account()
-				{
-                    code = 1111,
-                    FullName = "Nguyễn Anh Dũng",
-                    Password = StringHelper.stringToSHA512("123456").ToLower(),
-                    Email = "itfa.ahihi@gmail.com",
-                    CreateDate = DateTime.Now,
-                    IsManageAccount = true,
-                    IsNormalAccount = false,
-                    PhoneNumber = "0978132474"
+							 try
+							 {
+								//		result = await _repository.GetRepository<Account>().CreateAsync(new Account()
+								//		{
+								//				 code = 1111,
+								//				 FullName = "Nguyễn Anh Dũng",
+								//				 Password = StringHelper.stringToSHA512("123456").ToLower(),
+								//				 Email = "itfa.ahihi@gmail.com",
+								//				 CreateDate = DateTime.Now,
+								//				 IsManageAccount = true,
+								//				 IsNormalAccount = false,
+								//				 PhoneNumber = "0978132474"
 
-                }, 0);
-			}
-			catch (Exception ex)
-			{
+								//		}, 0);
+										for (int i = 1; i <= 100; i++)
+										{
+												 Debug.WriteLine(i);
+												 result = await _repository.GetRepository<Weight>().CreateAsync(new Weight()
+												 {
+															code = i,
+												 }, 0);
+										}
+							 }
+							 catch (Exception ex)
+							 {
 
-				throw;
-			}
+										throw;
+							 }
 		
 			GC.Collect();
 			GC.WaitForPendingFinalizers();
